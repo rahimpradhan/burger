@@ -1,0 +1,1 @@
+INSERT INTO burgers (id, burger_name, devoured, date_created) VALUES ('1', 'Cheeseburger', False, ?);
