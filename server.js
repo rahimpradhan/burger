@@ -9,7 +9,7 @@ var port = 3000;
 app.use(express.static("public"));
 
 // Sets up the Express app to handle data parsing
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var exphbs = require("express-handlebars");
@@ -25,6 +25,12 @@ var connection = mysql.createConnection({
   password: "1234",
   database: "burgers_db"
 });
+
+var routes = require("./controllers/burgers_controller.js");
+
+app.use("/", routes);
+
+app.listen(port);
 
 connection.connect(function(err) {
   if (err) {
