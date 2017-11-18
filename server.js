@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var method = require("method-override");
 
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 // Use the express.static middleware to serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -21,5 +21,6 @@ var routes = require("./controllers/burgers_controller.js");
 
 app.use("/", routes);
 
-app.listen(port);
-
+app.listen(port, function() {
+  console.log("listening on port", port);
+});

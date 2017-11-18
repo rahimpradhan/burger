@@ -15,7 +15,7 @@ var orm = {
     });
   },
   //add new burger
-  create: function(burger_name, devoured, cb) {
+  create: function(burger_name, cb) {
     var queryString =  "INSERT INTO burgers (burger_name, devoured) VALUES (?,?)";
     //console.log(queryString);
     connection.query(queryString, burger_name, function(err, result) {
