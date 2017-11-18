@@ -4,25 +4,26 @@ var connection = require("./connection.js");
 
 var orm = {
   //display all burgers
-  all: function(table, callback) {
+  all: function(table, cb) {
     var queryString = "SELECT * FROM burgers";
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
       console.log(result);
-      callback(result);
+      cb(result);
     });
   },
   //add new burger
-  create: function(burger_name) {
-    var queryString = "INSERT INTO burgers ??";
+  create: function(burger_name, devoured, cb) {
+    var queryString =  "INSERT INTO burgers (burger_name, devoured) VALUES (?,?)";
     //console.log(queryString);
-    connection.query(queryString, [burger_name], function(err, result) {
+    connection.query(queryString, burger_name, function(err, result) {
       if (err) {
         throw err;
       }
       console.log(result);
+       cb(result);
     });
   },
   //update burger status
