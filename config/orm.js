@@ -4,17 +4,18 @@ var connection = require("./connection.js");
 
 var orm = {
   //display all burgers
-  selectAll: function() {
+  all: function(table, callback) {
     var queryString = "SELECT * FROM burgers";
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
       console.log(result);
+      callback(result);
     });
   },
   //add new burger
-  insertOne: function(burger_name) {
+  create: function(burger_name) {
     var queryString = "INSERT INTO burgers ??";
     //console.log(queryString);
     connection.query(queryString, [burger_name], function(err, result) {
@@ -25,14 +26,18 @@ var orm = {
     });
   },
   //update burger status
-  /*updateOne: function(devoured) {
-    var queryString = "UPDATE burgers SET devoured = true WHERE id = ?";
+ updateOne: function(id, cb){
 
-    connection.query(queryString, [tableOneCol, tableOneCol, tableOne, tableTwo, tableTwo, tableTwoForeignKey, tableOne, tableOneCol], function(err, result) {
-      console.log(result);
-    });
+    // Run MySQL Query
+    connection.query('UPDATE burgers SET ? WHERE ?', [{devoured: true}, {id: id}], function (err, result) {
+        if (err) throw err;
+          cb(result);
+      });
+
   }
-};*/
+
+
+
 }
 
 module.exports = orm;
