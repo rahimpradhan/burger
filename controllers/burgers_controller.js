@@ -12,16 +12,16 @@ router.get("/", function(req, res) {
       burger: data
     };
     //console.log(burgerObject);
-    res.render("index");
+    res.render("index", burgerObject);
   });
 });
 
 //route to create new burger
-router.post("/", function(req, res) {
+router.post("/api/burgers", function(req, res) {
   burgers.create([
-    "burger_name"
+    "burger_name", "devoured"
   ], [
-    req.body.burger_name
+    req.body.burger_name, req.body.devoured
   ], function(result) {
     // Send back the ID of the new burger
     res.json({ id: result.id });
